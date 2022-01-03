@@ -1,6 +1,6 @@
 import React from "react";
 
-const AddFrom = ({ onAdd }) => {
+const AddForm = ({ onAdd }) => {
   const formRef = React.createRef();
   const inputRef = React.createRef();
 
@@ -13,10 +13,10 @@ const AddFrom = ({ onAdd }) => {
 
   return (
     <form ref={formRef} onSubmit={onSubmit}>
-      <input ref={inputRef} type="text" placeholder="write your habit"></input>
+      <input ref={inputRef} type="text" placeholder="write your habit" />
       <button>Add</button>
     </form>
   );
 };
 
-export default AddFrom;
+export default AddForm;

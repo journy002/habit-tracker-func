@@ -1,27 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
 
-const Habit = ({ list, onIncrement, onDecrement, onDelete }) => {
+const Habit = ({ item, habitsIncrement, habitsDecrement, habitsDelete }) => {
   const habitIncrement = () => {
-    onIncrement(list);
+    habitsIncrement(item);
   };
 
   const habitDecrement = () => {
-    onDecrement(list);
+    habitsDecrement(item);
   };
 
   const habitDelete = () => {
-    onDelete(list);
+    habitsDelete(item);
   };
 
   return (
-    <li className="habit">
-      <span className="habit-name">{list.name}</span>
-      <span className="habit-count">{list.count}</span>
+    <li>
+      <span className="habit-name">{item.name}</span>
+      <span className="habit-count">{item.count}</span>
       <button className="habit-button habit-increase" onClick={habitIncrement}>
-        <i className="fas fa-plus-square"></i>
+        <i className="fas fa-plus"></i>
       </button>
       <button className="habit-button habit-decrease" onClick={habitDecrement}>
-        <i className="fas fa-minus-square"></i>
+        <i className="fas fa-minus"></i>
       </button>
       <button className="habit-button habit-delete" onClick={habitDelete}>
         <i className="fas fa-trash"></i>

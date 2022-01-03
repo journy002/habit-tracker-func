@@ -4,75 +4,67 @@ import Habits from "./component/habits";
 import Navbar from "./component/navbar";
 
 function App() {
-  const [lists, setLists] = useState([
+  const [names, setNames] = useState([
     { id: 1, name: "Reading", count: 0 },
-    { id: 2, name: "Runnding", count: 0 },
+    { id: 2, name: "Running", count: 0 },
     { id: 3, name: "Coding", count: 0 },
   ]);
-  const handleIncrement = (item) => {
-    setLists(
-      lists.map((list) => {
-        if (list.id === item.id) {
-          console.log("right!");
-          return { ...item, count: item.count + 1 };
+
+  const handleIncrease = (item) => {
+    setNames((names) =>
+      names.map((name) => {
+        if (name.id === item.id) {
+          return { ...name, count: name.count + 1 };
         }
-        return list;
+        console.log(names, "names");
+        console.log(item, "item");
+        return name;
       })
     );
   };
-  // useCallback 사용하기
-  //   const handleIncrement = useCallback((list) => {
-  //     setLists((lists) =>
-  //       lists.map((item) => {
-  //         if (item.id === list.id) {
-  //           return { ...list, count: list.count + 1 };
-  //         }
-  //         return item;
-  //       })
-  //     );
-  //   }, []);
 
-  const handleDecrement = (item) => {
-    setLists(
-      lists.map((list) => {
-        if (list.id === item.id) {
+  const handleDecrease = (item) => {
+    setNames((names) =>
+      names.map((name) => {
+        if (name.id === item.id) {
           const count = item.count - 1;
-          return { ...item, count: item.count > 0 ? count : 0 };
+          return { ...item, count: count > 0 ? count : 0 };
         }
-        return list;
+        return name;
       })
     );
   };
 
   const handleDelete = (item) => {
-    setLists(lists.filter((list) => list.id !== item.id));
+    setNames((names) => {
+      return names.filter((name) => name.id !== item.id);
+    });
   };
 
-  const handleAdd = (value) => {
-    setLists((lists) => [...lists, { id: Date.now(), name: value, count: 0 }]);
+  const onAdd = (value) => {
+    setNames((names) => {
+      return [...names, { id: Date.now(), name: value, count: 0 }];
+    });
   };
 
   const handleReset = () => {
-    setLists((lists) =>
-      lists.map((list) => {
-        if (list.count !== 0) {
-          return { ...list, count: 0 };
-        }
-        return list;
+    setNames((names) =>
+      names.map((name) => {
+        return { ...name, count: 0 };
       })
     );
   };
 
   return (
     <>
-      <Navbar totalCount={lists.filter((item) => item.count > 0).length} />
+      <Navbar totalCount={names.filter((name) => name.count > 0).length} />
       <Habits
-        lists={lists}
-        mainIncrement={handleIncrement}
-        mainDecrement={handleDecrement}
-        mainDelete={handleDelete}
-        handleAdd={handleAdd}
-        mainReset={handleReset}
+        names={names}
+        onIncrement={handleIncrease}
+        onDecrement={handleDecrease}
+        onDelete={handleDelete}
+        onAdd={onAdd}
+        onReset={handleReset}
       />
     </>
   );

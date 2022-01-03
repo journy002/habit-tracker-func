@@ -1,47 +1,31 @@
-import React, { useState, useCallback } from "react";
-import AddFrom from "./addFrom";
+import React from "react";
+import AddForm from "./addForm";
 import Habit from "./habit";
 
 const Habits = ({
-  lists,
-  mainIncrement,
-  mainDecrement,
-  mainDelete,
-  handleAdd,
-  mainReset,
+  names,
+  onIncrement,
+  onDecrement,
+  onDelete,
+  onAdd,
+  onReset,
 }) => {
-  const habitsIncrement = (list) => {
-    mainIncrement(list);
-  };
-  const habitsDecrement = (list) => {
-    mainDecrement(list);
-  };
-  const habitsDelete = (list) => {
-    mainDelete(list);
-  };
-
-  const onAdd = (name) => {
-    handleAdd(name);
-  };
-
   return (
-    <div>
-      <AddFrom onAdd={onAdd} />
+    <>
+      <AddForm onAdd={onAdd} />
       <ul>
-        {lists.map((list) => (
-          // '=>' 이후에 {}호를 쓴다면 꼭 return을 써서 값을 반환해줘야 한다.
-          // 바로 값이 나오게 한다면 ()를 사용해주면 된다.
+        {names.map((item) => (
           <Habit
-            key={list.id}
-            list={list}
-            onIncrement={habitsIncrement}
-            onDecrement={habitsDecrement}
-            onDelete={habitsDelete}
+            key={item.id}
+            item={item}
+            habitsIncrement={onIncrement}
+            habitsDecrement={onDecrement}
+            habitsDelete={onDelete}
           />
         ))}
       </ul>
-      <button onClick={mainReset}>Reset All</button>
-    </div>
+      <button onClick={onReset}>Reset All</button>
+    </>
   );
 };
 
