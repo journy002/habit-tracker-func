@@ -9,7 +9,6 @@ function App() {
     { id: 2, name: "Runnding", count: 0 },
     { id: 3, name: "Coding", count: 0 },
   ]);
-
   const handleIncrement = (item) => {
     setLists(
       lists.map((list) => {
@@ -49,6 +48,21 @@ function App() {
     setLists(lists.filter((list) => list.id !== item.id));
   };
 
+  const handleAdd = (value) => {
+    setLists((lists) => [...lists, { id: Date.now(), name: value, count: 0 }]);
+  };
+
+  const handleReset = () => {
+    setLists((lists) =>
+      lists.map((list) => {
+        if (list.count !== 0) {
+          return { ...list, count: 0 };
+        }
+        return list;
+      })
+    );
+  };
+
   return (
     <>
       <Navbar totalCount={lists.filter((item) => item.count > 0).length} />
@@ -57,6 +71,8 @@ function App() {
         mainIncrement={handleIncrement}
         mainDecrement={handleDecrement}
         mainDelete={handleDelete}
+        handleAdd={handleAdd}
+        mainReset={handleReset}
       />
     </>
   );
