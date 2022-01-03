@@ -15,7 +15,26 @@ li {
   background-color: wheat;
 }
 
-.habit.icon {
+.navbar-icon {
+  font-size: 1.5rem;
+  color: green;
+}
+
+.navbar-title {
+  margin-left: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.navbar-count {
+  display: inline-block;
+  margin-left: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.5rem;
+  color: white;
+  background-color: green;
+  border-radius: 50%;
+  text-align: center;
 }
 
 .habit {
